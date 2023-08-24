@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Currency Converter</string>
+
+    <string name="connection_error">Connection Error</string>
+    <string name="something_wrong_happen">Something went wrong</string>
+    <string name="server_error">Server Error</string>
+    <string name="time_out_error">Time out error</string>
+    <string name="back_to_home_page">Back to Homepage</string>
+    <string name="server_error_body">Server error please try again later</string>
+    <string name="no_data_to_preview">No data to Preview</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="no_internet_connection_body">oh,no you haven\'t internet connection to reach our data, please check connection and try again.</string>
+</resources>
