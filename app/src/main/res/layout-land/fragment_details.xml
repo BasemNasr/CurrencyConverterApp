@@ -29,15 +29,19 @@
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/chart"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="@dimen/dimen_200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/horizontalViewLine"
             app:layout_constraintTop_toBottomOf="@+id/tvDetailsTitle"/>
 
         <View
             android:id="@+id/viewBelowChart"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:background="@color/purple_700"
             android:layout_height="@dimen/dimen_1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/horizontalViewLine"
             app:layout_constraintTop_toBottomOf="@+id/chart"/>
 
 
@@ -94,7 +98,7 @@
             app:layout_constraintStart_toEndOf="@+id/horizontalViewLine"
             android:textColor="@color/primary_500"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewBelowChart"
+            app:layout_constraintTop_toTopOf="@id/chart"
             android:text="@string/other_currencies"/>
 
 
