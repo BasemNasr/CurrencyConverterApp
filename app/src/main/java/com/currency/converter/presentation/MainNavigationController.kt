@@ -1,9 +1,11 @@
 package com.currency.converter.presentation
 
+import android.os.Bundle
 import androidx.navigation.NavController
 import com.currency.converter.base.navigation.NavigationController
 
 import com.currency.converter.base.navigation.NavigationEventController
+import com.currency.converter.presentation.home.HomeFragmentDirections
 import com.currency.converter.presentation.splash.SplashFragmentDirections
 
 
@@ -20,21 +22,19 @@ constructor(
                     )
                 }
 
-                /*is MainNavigateEvent.HomeToHelpSheet -> {
+                is MainNavigateEvent.HomeToDetails -> {
                     navController.navigate(
-                        HomeFragmentDirections.actionHomeFragmentToHelpSheetFragment(
-                            event.support_number,
-                            event.startLat,
-                            event.startLng
+                        HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
+                            event.currencyFrom,
+                            event.currencyTo,
                         ).actionId,
 
                         args = Bundle().apply {
-                            putString("support_number", event.support_number)
-                            putString("startLat", event.startLat)
-                            putString("startLng", event.startLng)
+                            putString("from", event.currencyFrom)
+                            putString("to", event.currencyTo)
                         }
                     )
-                }*/
+                }
             }
 
         } catch (e: Exception) {
@@ -45,5 +45,5 @@ constructor(
 
 sealed class MainNavigateEvent : NavigationEventController() {
     object SplashToHome : MainNavigateEvent()
-
+    data class HomeToDetails(val currencyFrom:String,val currencyTo:String) : MainNavigateEvent()
 }

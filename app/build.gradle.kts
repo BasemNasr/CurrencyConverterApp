@@ -124,6 +124,7 @@ dependencies {
     implementation(Libs.UI.constraintlayout)
     implementation(Libs.UI.swiperefreshlayout)
     implementation(Libs.UI.coilImageLoading)
+    implementation(Libs.UI.mpAndroidChart)
 
 
 }

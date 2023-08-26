@@ -5,6 +5,7 @@ import com.currency.converter.data.models.BaseResponse
 import com.currency.converter.data.models.response.GetCurrenciesResponse
 import com.currency.converter.data.models.response.GetHistoricalResponse
 import com.currency.converter.data.network.remote.NetworkResponse
+import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -29,7 +30,7 @@ interface ServiceApi {
         @Query("base_currency") baseCurrency: String? = "USD",
         @Query("date_from") dateFrom: String? = null,
         @Query("date_to") dateTo: String? = null,
-    ): NetworkResponse<GetHistoricalResponse, BaseResponse>
+    ): NetworkResponse<ResponseBody, BaseResponse>
 
 }
 

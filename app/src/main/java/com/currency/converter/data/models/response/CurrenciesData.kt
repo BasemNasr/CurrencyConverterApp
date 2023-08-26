@@ -33,5 +33,9 @@ data class CurrenciesData(
     val THB: Double?=null,
     val TRY: Double?=null,
     val USD: Double?=null,
-    val ZAR: Double?=null
+    val ZAR: Double?=null,
+
+
+    //only for historical
+    var date: String?=null
 )

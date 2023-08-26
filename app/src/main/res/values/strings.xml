@@ -13,6 +13,11 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="show_more">Show More</string>
+    <string name="other_currencies">Other Currencies</string>
+    <string name="last_3_days">Last 3 Days</string>
+    <string name="historical_data_from_to">From %1$s To %2$s</string>
+    <string name="historical_exchange_rate">Historical Exchange Rate</string>
+    <string name="api_error_occured">Api Error Occured , try again later</string>
 
 
     <string-array name="currencies">

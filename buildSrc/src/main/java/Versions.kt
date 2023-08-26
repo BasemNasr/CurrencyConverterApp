@@ -32,6 +32,7 @@ object Versions {
     const val coil = "2.4.0"
     const val constraintLayout = "2.1.4"
     const val swiperefreshlayout = "1.1.0"
+    const val mpAndroidChart = "v3.0.3"
     const val roomVersion = "2.5.2"
     const val prefDataStoreVersion = "1.1.0-alpha04"
     const val protoDataStoreVersion = "1.0.0"

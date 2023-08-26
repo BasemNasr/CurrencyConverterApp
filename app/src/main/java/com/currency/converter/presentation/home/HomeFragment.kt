@@ -2,6 +2,7 @@ package com.currency.converter.presentation.home
 
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -16,6 +17,7 @@ import com.currency.converter.R
 import com.currency.converter.base.ParentFragment
 import com.currency.converter.data.network.remote.NetworkResponse
 import com.currency.converter.databinding.FragmentHomeBinding
+import com.currency.converter.presentation.MainNavigateEvent
 import com.currency.converter.presentation.MainNavigationController
 import com.currency.converter.utils.NumberUtils.roundTo2DecimalAsString
 import com.currency.converter.utils.rotateImage
@@ -109,7 +111,10 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
             }
 
             btnShowMore.setOnClickListener {
-
+                mNavigator.navigate(MainNavigateEvent.HomeToDetails(
+                    viewModel.selectedBase,
+                    viewModel.selectedTo,
+                ))
             }
 
             spinnerFrom.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

@@ -22,8 +22,8 @@ constructor(
     @IoDispatcher private val io: CoroutineDispatcher
 ) : BaseViewModel() {
 
-    private var selectedBase = "USD"
-    private var selectedTo = "USD"
+    var selectedBase = "USD"
+    var selectedTo = "USD"
 
     private var _currencies: MutableStateFlow<CurrenciesData?> =
         MutableStateFlow(null)

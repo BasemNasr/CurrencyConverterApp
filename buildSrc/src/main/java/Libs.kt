@@ -46,6 +46,7 @@ object Libs {
         const val coilImageLoading = "io.coil-kt:coil:${Versions.coil}"
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
         const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout}"
+        const val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
     }
     object Networking {
         //Networking libraries
