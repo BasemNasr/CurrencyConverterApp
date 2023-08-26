@@ -191,25 +191,26 @@ object AppUtils {
         return df.format(c)
     }
 
-    fun gettingDateBefore3Days(currentDate: String): String {
+
+    fun gettingDateBefore4Days(currentDate: String): String {
         val df = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val myDate: Date = df.parse(currentDate)
-        val newDate: Date = Date(myDate.time - 259200000L) // 3 * 24 * 60 * 60 * 1000
+        val newDate: Date = Date(myDate.time - 345600000L) // 4 * 24 * 60 * 60 * 1000
         val date: String = df.format(newDate)
         return date
     }
-    fun gettingDateBefore2Days(currentDate: String): String {
+    fun gettingDateBefore3Days(currentDate: String): String {
         val df = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val myDate: Date = df.parse(currentDate)
-        val newDate: Date = Date(myDate.time - 172800000L) //2 * 24 * 60 * 60 * 1000
+        val newDate: Date = Date(myDate.time - 259200000L) //3 * 24 * 60 * 60 * 1000
         val date: String = df.format(newDate)
         return date
     }
 
-    fun gettingYesterdayDate(currentDate: String): String {
+    fun gettingBeforeYesterdayDate(currentDate: String): String {
         val df = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val myDate: Date = df.parse(currentDate)
-        val newDate: Date = Date(myDate.time - 86400000L) // 1 * 24 * 60 * 60 * 1000
+        val newDate: Date = Date(myDate.time - 172800000L) // 2 * 24 * 60 * 60 * 1000
         return df.format(newDate)
     }
 

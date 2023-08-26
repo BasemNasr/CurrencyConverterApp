@@ -10,6 +10,17 @@ import java.util.Locale
 class AppUtilsTest {
 
     @Test
+    fun gettingDateBefore4Days() {
+        val currentDate = "2023-08-26"
+        val df = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val myDate: Date = df.parse("$currentDate")
+        val newDate = Date(myDate.time - 345600000L)
+        val date: String = df.format(newDate)
+
+        assertEquals(date,"2023-08-22")
+    }
+
+    @Test
     fun gettingDateBefore3Days() {
         val currentDate = "2023-08-26"
         val df = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -21,7 +32,7 @@ class AppUtilsTest {
     }
 
     @Test
-    fun gettingDateBefore2Days() {
+    fun gettingDayBeforeYesterdayDate() {
         val currentDate = "2023-08-26"
         val df = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val myDate: Date = df.parse("$currentDate")
@@ -29,16 +40,5 @@ class AppUtilsTest {
         val date: String = df.format(newDate)
 
         assertEquals(date,"2023-08-24")
-    }
-
-    @Test
-    fun gettingYesterdayDate() {
-        val currentDate = "2023-08-26"
-        val df = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val myDate: Date = df.parse("$currentDate")
-        val newDate = Date(myDate.time - 86400000L)
-        val date: String = df.format(newDate)
-
-        assertEquals(date,"2023-08-25")
     }
 }

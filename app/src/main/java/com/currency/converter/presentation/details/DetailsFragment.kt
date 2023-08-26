@@ -63,9 +63,9 @@ class DetailsFragment : ParentFragment<FragmentDetailsBinding>() {
             tvOtherFrom.text = "1 ${args.from} ${getString(R.string.to)}"
         }
         val currentDate = AppUtils.gettingCurrentData()
-        val fromDate = AppUtils.gettingDateBefore3Days(currentDate)
-        val middleDate = AppUtils.gettingDateBefore2Days(currentDate)
-        val toDate = AppUtils.gettingYesterdayDate(currentDate)
+        val fromDate = AppUtils.gettingDateBefore4Days(currentDate)
+        val middleDate = AppUtils.gettingDateBefore3Days(currentDate)
+        val toDate = AppUtils.gettingBeforeYesterdayDate(currentDate)
         viewModel.getHistoricalCurrencies(args.from, "$fromDate", "$toDate", "$middleDate")
         viewModel.getCurrencies(args.from)
     }
