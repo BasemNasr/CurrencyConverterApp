@@ -37,7 +37,7 @@ android {
         )
         buildConfigField(
             "String",
-            name = Config.BuildFurniture.BASE_URL,
+            name = Config.BuildFurniture.API_KEY,
             "\"fca_live_jj7Ad7xnxW49KWVHwKUUFWuHYEaAkihFqbnI14jF\""
         )
     }

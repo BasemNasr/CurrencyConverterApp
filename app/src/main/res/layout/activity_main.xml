@@ -6,4 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:gravity="start"
+        app:titleTextColor="@color/white"
+        app:titleCentered="true"
+        app:navigationIcon="@drawable/ic_back"
+        android:background="@color/primary_500"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/app_name" />
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:navGraph="@navigation/main_nav_graph" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

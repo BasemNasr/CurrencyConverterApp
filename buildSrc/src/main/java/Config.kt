@@ -1,7 +1,7 @@
 object Config {
 
     object Application {
-        val applicationId = "com.currency.conventer"
+        val applicationId = "com.currency.converter"
     }
 
     object BuildFurniture {
