@@ -1,13 +1,15 @@
 package com.currency.converter.presentation.details
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.currency.converter.base.BaseViewModel
+import com.currency.converter.data.models.CurrencyModel
 import com.currency.converter.data.models.response.CurrenciesData
 import com.currency.converter.data.network.remote.NetworkResponse
 import com.currency.converter.di.IoDispatcher
 import com.currency.converter.domain.usecases.GetHistoricalUseCase
 import com.currency.converter.domain.usecases.GetLatestExchangeRateUseCase
+import com.currency.converter.utils.AppUtils.getAllCurrenciesTitle
+import com.currency.converter.utils.AppUtils.getCurrencyValue
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -34,9 +36,9 @@ constructor(
         MutableStateFlow(ArrayList())
     var historicalList = _historicalList.asStateFlow()
 
-    private var _currencies: MutableStateFlow<CurrenciesData?> =
-        MutableStateFlow(null)
-    var currencies = _currencies.asStateFlow()
+    private var _currencies: MutableStateFlow<ArrayList<CurrencyModel>?> =
+        MutableStateFlow(ArrayList())
+    var otherCurrencies = _currencies.asStateFlow()
 
 
     fun getHistoricalCurrencies(
@@ -57,7 +59,6 @@ constructor(
                                 middleDate
                             )
                         }
-
                         else -> {
                             _errorLoadingState.emit(it)
                         }
@@ -104,7 +105,6 @@ constructor(
             historicalList.add(firstData)
         }
 
-
         viewModelScope.launch {
             _historicalList.emit(historicalList)
         }
@@ -113,11 +113,11 @@ constructor(
 
     fun getCurrencies(baseCurrency: String = selectedBase) {
         CoroutineScope(io).launch(handlerException) {
-            launchIn = launch {
+            secondIn = launch {
                 getLatestExchangeRateUseCase.getCurrencies(baseCurrency).collect {
                     when (it) {
                         is NetworkResponse.Success -> {
-                            _currencies.emit(it.body.data)
+                            handleCurrenciesAsList(baseCurrency, it.body.data)
                         }
 
                         else -> {
@@ -127,6 +127,30 @@ constructor(
                 }
             }
         }
+    }
+
+
+    private fun handleCurrenciesAsList(
+        baseCurrency: String,
+        data: CurrenciesData
+    ) {
+        var historicalList: ArrayList<CurrencyModel> = ArrayList()
+        val currenciesArray = getAllCurrenciesTitle()
+        for (currencyName in currenciesArray) {
+            if (baseCurrency != currencyName) {
+                historicalList.add(
+                    CurrencyModel(
+                        currencyName,
+                        getCurrencyValue(currencyName, data)
+                    )
+                )
+            }
+        }
+
+        viewModelScope.launch {
+            _currencies.emit(historicalList)
+        }
+
     }
 
 

@@ -2,7 +2,6 @@ package com.currency.converter.presentation.details
 
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -20,6 +19,7 @@ import com.currency.converter.data.network.remote.NetworkResponse
 import com.currency.converter.databinding.FragmentDetailsBinding
 import com.currency.converter.presentation.MainNavigationController
 import com.currency.converter.presentation.details.adapter.HistoricalExchangeAdapter
+import com.currency.converter.presentation.details.adapter.OtherCurrenciesAdapter
 import com.currency.converter.utils.AppUtils
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -46,21 +46,30 @@ class DetailsFragment : ParentFragment<FragmentDetailsBinding>() {
     private val viewModel: DetailsViewModel by viewModels()
     private val currenciesArray by lazy { resources.getStringArray(R.array.currencies) }
     private val args: DetailsFragmentArgs by navArgs()
-    private val vehicleAdapter by lazy { HistoricalExchangeAdapter() }
+    private val historicalAdapter by lazy { HistoricalExchangeAdapter() }
+    private val otherCurrenciesAdapter by lazy { OtherCurrenciesAdapter() }
+
+
+    lateinit var barDataSet1: BarDataSet
+    lateinit var barDataSet2: BarDataSet
+    lateinit var barEntriesList: ArrayList<BarEntry>
 
     @SuppressLint("SetTextI18n")
     override fun initializeComponents(view: View) {
         setupRecycler()
         observeErrorLoading()
         observeHistoricalData()
+        observeOtherCurrencies()
         binding.apply {
             tvDetailsTitle.text = getString(R.string.historical_data_from_to, args.from, args.to)
+            tvOtherFrom.text = "1 ${args.from} ${getString(R.string.to)}"
         }
         val currentDate = AppUtils.gettingCurrentData()
         val fromDate = AppUtils.gettingDateBefore3Days(currentDate)
         val middleDate = AppUtils.gettingDateBefore2Days(currentDate)
         val toDate = AppUtils.gettingYesterdayDate(currentDate)
         viewModel.getHistoricalCurrencies(args.from, "$fromDate", "$toDate", "$middleDate")
+        viewModel.getCurrencies(args.from)
     }
 
     private fun observeHistoricalData() {
@@ -69,17 +78,26 @@ class DetailsFragment : ParentFragment<FragmentDetailsBinding>() {
                 it?.let {
                     showLoading(false)
                     if(it.isNotEmpty()){
-                        vehicleAdapter.submitList(it, args.from, args.to)
+                        historicalAdapter.submitList(it, args.from, args.to)
                         setUpChartResult(it)
                     }
                 }
             }
         }
     }
+    private fun observeOtherCurrencies() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.otherCurrencies.collectLatest {
+                it?.let {
+                    showLoading(false)
+                    if(it.isNotEmpty()){
+                        otherCurrenciesAdapter.submitList(it)
+                    }
+                }
+            }
+        }
+    }
 
-    lateinit var barDataSet1: BarDataSet
-    lateinit var barDataSet2: BarDataSet
-    lateinit var barEntriesList: ArrayList<BarEntry>
 
 
     private fun setUpChartResult(data: ArrayList<CurrenciesData>) {
@@ -161,7 +179,13 @@ class DetailsFragment : ParentFragment<FragmentDetailsBinding>() {
 
     private fun setupRecycler() {
         binding.rvHistoricalData.apply {
-            adapter = vehicleAdapter
+            adapter = historicalAdapter
+            layoutManager = LinearLayoutManager(
+                this@DetailsFragment.requireContext(), LinearLayoutManager.VERTICAL, false
+            )
+        }
+        binding.rvOther.apply {
+            adapter = otherCurrenciesAdapter
             layoutManager = LinearLayoutManager(
                 this@DetailsFragment.requireContext(), LinearLayoutManager.VERTICAL, false
             )

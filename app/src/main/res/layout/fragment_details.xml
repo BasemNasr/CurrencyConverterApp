@@ -48,7 +48,7 @@
         android:textColor="@color/primary_500"
         app:layout_constraintEnd_toStartOf="@+id/rvOther"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chart"
+        app:layout_constraintTop_toBottomOf="@+id/viewBelowChart"
         android:text="@string/last_3_days"/>
 
 
@@ -67,6 +67,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <View
+        android:id="@+id/horizontalViewLine"
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:background="@color/purple_700"
@@ -85,10 +86,28 @@
         android:layout_marginBottom="@dimen/dimen_10dp"
         android:layout_marginTop="@dimen/dimen_10dp"
         android:textSize="@dimen/text_size_16sp"
+        app:layout_constraintStart_toEndOf="@+id/horizontalViewLine"
         android:textColor="@color/primary_500"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chart"
+        app:layout_constraintTop_toBottomOf="@+id/viewBelowChart"
         android:text="@string/other_currencies"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOtherFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_10dp"
+        android:layout_marginStart="@dimen/dimen_10dp"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:textSize="@dimen/text_size_16sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/horizontalViewLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvOtherTitle"
+        tools:text="USD To"/>
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -96,8 +115,12 @@
         android:layout_width="@dimen/dimen_160dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/dimen_16dp"
+        tools:itemCount="3"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/other_currencies_item"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvOtherTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvOtherFrom"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 

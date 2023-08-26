@@ -7,6 +7,43 @@ import java.util.Date
 import java.util.Locale
 
 object AppUtils {
+
+    fun getAllCurrenciesTitle() = arrayListOf(
+        "USD",
+        "AUD",
+        "BGN",
+        "BRL",
+        "CAD",
+        "CHF",
+        "CNY",
+        "CZK",
+        "DKK",
+        "EUR",
+        "GBP",
+        "HKD",
+        "HRK",
+        "HUF",
+        "IDR",
+        "ILS",
+        "INR",
+        "ISK",
+        "JPY",
+        "KRW",
+        "MXN",
+        "MYR",
+        "NOK",
+        "NZD",
+        "PHP",
+        "PLN",
+        "RON",
+        "RUB",
+        "SEK",
+        "SGD",
+        "THB",
+        "TRY",
+        "ZAR"
+    )
+
     fun getCurrencyValue(key: String, currencyData: CurrenciesData?): Double? {
         return when (key) {
             "USD" -> {

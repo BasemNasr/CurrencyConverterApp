@@ -50,6 +50,17 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
         viewModel.getCurrencies()
     }
 
+
+    private fun observeCurrencies() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.currencies.collect {
+                it?.let {
+                    showLoading(false)
+                    updateConvertedToValue()
+                }
+            }
+        }
+    }
     private fun observeErrorLoading() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.errorLoadingState.collectLatest {
@@ -71,16 +82,6 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
     }
 
 
-    private fun observeCurrencies() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.currencies.collectLatest {
-                it?.let {
-                    showLoading(false)
-                    updateConvertedToValue()
-                }
-            }
-        }
-    }
 
     private fun updateConvertedToValue() {
         binding.etTo.setText(
@@ -184,4 +185,5 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
             binding.btnShowMore.visibility = View.VISIBLE
         }
     }
+
 }
