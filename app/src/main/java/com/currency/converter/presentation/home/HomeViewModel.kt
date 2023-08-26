@@ -4,7 +4,7 @@ import com.currency.converter.base.BaseViewModel
 import com.currency.converter.data.models.response.CurrenciesData
 import com.currency.converter.data.network.remote.NetworkResponse
 import com.currency.converter.di.IoDispatcher
-import com.currency.converter.domain.usecases.GetLatestExchangeRateUseCase
+import com.currency.converter.domain.usecases.GetCurrenciesUseCase
 import com.currency.converter.utils.AppUtils.getCurrencyValue
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class HomeViewModel
 @Inject
 constructor(
-    private val getLatestExchangeRateUseCase: GetLatestExchangeRateUseCase,
+    private val getLatestExchangeRateUseCase: GetCurrenciesUseCase,
     @IoDispatcher private val io: CoroutineDispatcher
 ) : BaseViewModel() {
 
@@ -28,6 +28,7 @@ constructor(
     private var _currencies: MutableStateFlow<CurrenciesData?> =
         MutableStateFlow(null)
     var currencies = _currencies.asStateFlow()
+
 
 
     fun getCurrencies(baseCurrency: String = selectedBase) {

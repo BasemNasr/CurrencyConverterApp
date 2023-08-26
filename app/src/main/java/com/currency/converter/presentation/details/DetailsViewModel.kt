@@ -7,7 +7,7 @@ import com.currency.converter.data.models.response.CurrenciesData
 import com.currency.converter.data.network.remote.NetworkResponse
 import com.currency.converter.di.IoDispatcher
 import com.currency.converter.domain.usecases.GetHistoricalUseCase
-import com.currency.converter.domain.usecases.GetLatestExchangeRateUseCase
+import com.currency.converter.domain.usecases.GetCurrenciesUseCase
 import com.currency.converter.utils.AppUtils.getAllCurrenciesTitle
 import com.currency.converter.utils.AppUtils.getCurrencyValue
 import com.google.gson.Gson
@@ -25,7 +25,7 @@ class DetailsViewModel
 @Inject
 constructor(
     private val getHistoricalUseCase: GetHistoricalUseCase,
-    private val getLatestExchangeRateUseCase: GetLatestExchangeRateUseCase,
+    private val getLatestExchangeRateUseCase: GetCurrenciesUseCase,
 
     @IoDispatcher private val io: CoroutineDispatcher
 ) : BaseViewModel() {

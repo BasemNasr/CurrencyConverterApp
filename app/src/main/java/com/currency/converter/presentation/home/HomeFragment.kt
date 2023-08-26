@@ -2,7 +2,6 @@ package com.currency.converter.presentation.home
 
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -26,7 +25,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-@SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
 class HomeFragment : ParentFragment<FragmentHomeBinding>() {
     override val bindingInflater: (LayoutInflater) -> ViewBinding
@@ -40,8 +38,10 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
 
     private val viewModel: HomeViewModel by viewModels()
     private val currenciesArray by lazy { resources.getStringArray(R.array.currencies) }
+
     //0=from,1=to
     private var currentFocused = 0
+
     @SuppressLint("SetTextI18n")
     override fun initializeComponents(view: View) {
         setUpViewActions()
@@ -50,26 +50,16 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
         viewModel.getCurrencies()
     }
 
-
-    private fun observeCurrencies() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.currencies.collect {
-                it?.let {
-                    showLoading(false)
-                    updateConvertedToValue()
-                }
-            }
-        }
-    }
     private fun observeErrorLoading() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.errorLoadingState.collectLatest {
                 when (it) {
                     NetworkResponse.Loading -> {
-                        showLoading(true)
+                        //showLoading(true)
                     }
+
                     else -> {
-                        showLoading(false)
+                        //showLoading(false)
                         Toast.makeText(
                             requireContext(),
                             "${getString(R.string.connection_error)}",
@@ -82,6 +72,16 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
     }
 
 
+    private fun observeCurrencies() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.currencies.collect {
+                it?.let {
+                    //showLoading(false)
+                    updateConvertedToValue()
+                }
+            }
+        }
+    }
 
     private fun updateConvertedToValue() {
         binding.etTo.setText(
@@ -92,6 +92,7 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
             )
         )
     }
+
     private fun updateConvertedFromValue() {
         binding.etFrom.setText(
             roundTo2DecimalAsString(
@@ -112,10 +113,12 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
             }
 
             btnShowMore.setOnClickListener {
-                mNavigator.navigate(MainNavigateEvent.HomeToDetails(
-                    viewModel.selectedBase,
-                    viewModel.selectedTo,
-                ))
+                mNavigator.navigate(
+                    MainNavigateEvent.HomeToDetails(
+                        viewModel.selectedBase,
+                        viewModel.selectedTo,
+                    )
+                )
             }
 
             spinnerFrom.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -155,7 +158,7 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
                 }
             }
             etFrom.doAfterTextChanged {
-                if(currentFocused==0){
+                if (currentFocused == 0) {
                     if (it?.isNotEmpty() == true)
                         updateConvertedToValue()
                     else {
@@ -164,7 +167,7 @@ class HomeFragment : ParentFragment<FragmentHomeBinding>() {
                 }
             }
             etTo.doAfterTextChanged {
-                if(currentFocused==1){
+                if (currentFocused == 1) {
                     if (it?.isNotEmpty() == true)
                         updateConvertedFromValue()
                     else {

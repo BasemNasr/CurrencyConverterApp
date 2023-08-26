@@ -62,6 +62,11 @@ object Libs {
         const val androidXJunit = "androidx.test.ext:junit:${Versions.jUnitAndroidX}"
         const val jUnitRunner = "androidx.test:runner:${Versions.junitRunnerVersion}"
         const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCoreVersion}"
+        const val hiltTesting = "com.google.dagger:hilt-android-testing:2.41"
+        const val mockito = "org.mockito:mockito-android:2.21.0"
+        const val androidxCoreTesting = "androidx.arch.core:core-testing:2.2.0"
+        const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1"
+
     }
 
 }

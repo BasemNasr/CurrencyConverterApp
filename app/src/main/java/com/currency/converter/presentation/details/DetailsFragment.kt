@@ -31,7 +31,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-@SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
 class DetailsFragment : ParentFragment<FragmentDetailsBinding>() {
     override val bindingInflater: (LayoutInflater) -> ViewBinding
@@ -44,7 +43,6 @@ class DetailsFragment : ParentFragment<FragmentDetailsBinding>() {
     }
 
     private val viewModel: DetailsViewModel by viewModels()
-    private val currenciesArray by lazy { resources.getStringArray(R.array.currencies) }
     private val args: DetailsFragmentArgs by navArgs()
     private val historicalAdapter by lazy { HistoricalExchangeAdapter() }
     private val otherCurrenciesAdapter by lazy { OtherCurrenciesAdapter() }

@@ -91,6 +91,11 @@ dependencies {
     //==================== Caching ============
     //room
     implementation(Libs.CACHING.roomRuntime)
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
     annotationProcessor(Libs.CACHING.roomCompiler)
     implementation(Libs.CACHING.roomKtx)
     //dataStore
@@ -119,7 +124,11 @@ dependencies {
     testImplementation(Libs.TestLibraries.jUnit)
     androidTestImplementation(Libs.TestLibraries.androidXJunit)
     androidTestImplementation(Libs.TestLibraries.espressoCore)
-
+    androidTestImplementation(Libs.TestLibraries.hiltTesting)
+    androidTestImplementation(Libs.TestLibraries.mockito)
+    testImplementation(Libs.TestLibraries.androidxCoreTesting)
+    androidTestImplementation(Libs.TestLibraries.androidxCoreTesting)
+    testImplementation(Libs.TestLibraries.coroutinesTest)
     //==================== Ui Library ============
     implementation(Libs.UI.constraintlayout)
     implementation(Libs.UI.swiperefreshlayout)

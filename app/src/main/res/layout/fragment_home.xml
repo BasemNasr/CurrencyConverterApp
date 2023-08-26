@@ -1,145 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="@dimen/dimen_100dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="@dimen/dimen_100dp"
-        android:layout_height="@dimen/dimen_100dp"
-        android:src="@drawable/logo"
-        android:layout_marginTop="@dimen/dimen_16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_40dp"
+            android:textSize="@dimen/text_size_16sp"
+            android:text="@string/from"
+            app:layout_constraintEnd_toEndOf="@+id/spinnerFrom"
+            app:layout_constraintStart_toStartOf="@+id/spinnerFrom"
+            app:layout_constraintTop_toBottomOf="@+id/ivLogo"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_40dp"
+            android:textSize="@dimen/text_size_16sp"
+            android:text="@string/to"
+            app:layout_constraintEnd_toEndOf="@+id/spinnerTo"
+            app:layout_constraintStart_toStartOf="@+id/spinnerTo"
+            app:layout_constraintTop_toBottomOf="@+id/ivLogo"/>
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dimen_10dp"
-        android:layout_marginStart="@dimen/dimen_10dp"
-        android:layout_marginBottom="@dimen/dimen_10dp"
-        android:layout_marginTop="@dimen/dimen_40dp"
-        android:textSize="@dimen/text_size_16sp"
-        android:text="@string/from"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerFrom"
-        app:layout_constraintStart_toStartOf="@+id/spinnerFrom"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo"/>
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerFrom"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_width="@dimen/dimen_120dp"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:entries="@array/currencies"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivSwap"
+            app:layout_constraintTop_toBottomOf="@+id/tvFrom"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dimen_10dp"
-        android:layout_marginStart="@dimen/dimen_10dp"
-        android:layout_marginBottom="@dimen/dimen_10dp"
-        android:layout_marginTop="@dimen/dimen_40dp"
-        android:textSize="@dimen/text_size_16sp"
-        android:text="@string/to"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerTo"
-        app:layout_constraintStart_toStartOf="@+id/spinnerTo"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivSwap"
+            android:layout_width="@dimen/dimen_50dp"
+            android:layout_height="@dimen/dimen_50dp"
+            android:src="@drawable/swap_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/spinnerFrom"/>
 
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinnerFrom"
-        android:layout_height="@dimen/dimen_50dp"
-        android:layout_width="@dimen/dimen_120dp"
-        android:layout_marginEnd="@dimen/dimen_10dp"
-        android:layout_marginStart="@dimen/dimen_10dp"
-        android:layout_marginBottom="@dimen/dimen_10dp"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:entries="@array/currencies"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ivSwap"
-        app:layout_constraintTop_toBottomOf="@+id/tvFrom"/>
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerTo"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_width="@dimen/dimen_120dp"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:entries="@array/currencies"
+            app:layout_constraintStart_toEndOf="@id/ivSwap"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFrom"/>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivSwap"
-        android:layout_width="@dimen/dimen_50dp"
-        android:layout_height="@dimen/dimen_50dp"
-        android:src="@drawable/swap_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinnerFrom"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etFrom"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="@dimen/dimen_46dp"
+            android:background="@drawable/et_bg_gray"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerFrom"
+            app:layout_constraintStart_toStartOf="@+id/spinnerFrom"
+            app:layout_constraintEnd_toEndOf="@+id/spinnerFrom"
+            android:text="1"
+            android:hint="@string/from"
+            android:inputType="number"
+            android:digits="0123456789"
+            />
 
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinnerTo"
-        android:layout_height="@dimen/dimen_50dp"
-        android:layout_width="@dimen/dimen_120dp"
-        android:layout_marginEnd="@dimen/dimen_10dp"
-        android:layout_marginStart="@dimen/dimen_10dp"
-        android:layout_marginBottom="@dimen/dimen_10dp"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:entries="@array/currencies"
-        app:layout_constraintStart_toEndOf="@id/ivSwap"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFrom"/>
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etFrom"
-        android:layout_width="@dimen/dimen_0dp"
-        android:layout_height="@dimen/dimen_46dp"
-        android:background="@drawable/et_bg_gray"
-        android:layout_marginTop="@dimen/dimen_16dp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerFrom"
-        app:layout_constraintStart_toStartOf="@+id/spinnerFrom"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerFrom"
-        android:text="1"
-        android:hint="@string/from"
-        android:inputType="number"
-        android:digits="0123456789"
-        />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etTo"
-        android:layout_width="@dimen/dimen_0dp"
-        android:layout_height="@dimen/dimen_46dp"
-        android:background="@drawable/et_bg_gray"
-        android:layout_marginTop="@dimen/dimen_16dp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerTo"
-        app:layout_constraintStart_toStartOf="@+id/spinnerTo"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerTo"
-        android:text="1"
-        android:hint="@string/to"
-        android:inputType="number"
-        android:digits="0123456789"
-        />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etTo"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="@dimen/dimen_46dp"
+            android:background="@drawable/et_bg_gray"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerTo"
+            app:layout_constraintStart_toStartOf="@+id/spinnerTo"
+            app:layout_constraintEnd_toEndOf="@+id/spinnerTo"
+            android:text="1"
+            android:hint="@string/to"
+            android:inputType="number"
+            android:digits="0123456789"
+            />
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnShowMore"
-        android:layout_width="@dimen/dimen_200dp"
-        android:layout_height="@dimen/dimen_56dp"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:text="@string/show_more"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_btn_primary_color"
-        app:layout_constraintTop_toBottomOf="@+id/etTo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnShowMore"
+            android:layout_width="@dimen/dimen_200dp"
+            android:layout_height="@dimen/dimen_56dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:text="@string/show_more"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_btn_primary_color"
+            app:layout_constraintTop_toBottomOf="@+id/etTo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="@dimen/dimen_50dp"
-        android:layout_height="@dimen/dimen_50dp"
-        android:visibility="invisible"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnShowMore"
-        app:layout_constraintTop_toBottomOf="@+id/etTo"
-        app:layout_constraintEnd_toEndOf="@+id/btnShowMore"
-        app:layout_constraintStart_toStartOf="@+id/btnShowMore"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="@dimen/dimen_50dp"
+            android:layout_height="@dimen/dimen_50dp"
+            android:visibility="invisible"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnShowMore"
+            app:layout_constraintTop_toBottomOf="@+id/etTo"
+            app:layout_constraintEnd_toEndOf="@+id/btnShowMore"
+            app:layout_constraintStart_toStartOf="@+id/btnShowMore"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
